@@ -2,6 +2,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/16/solid";
 import logo from "../assets/images/logo.png";
 import { Context } from "../assets/context/MyContext";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
     const context = useContext(Context);
@@ -15,7 +16,10 @@ const Navbar = () => {
     return (
         <div className="border-b-[1px] border-b-gray-400/40">
             <nav className="max-w-7xl mx-auto px-2 py-4 flex justify-between items-center relative">
-                <div className="flex gap-2 justify-center items-center z-50">
+                <Link
+                    to="/"
+                    className="flex gap-2 justify-center items-center z-50"
+                >
                     <img
                         src={logo}
                         alt="logo"
@@ -24,7 +28,7 @@ const Navbar = () => {
                     <span className="text-xl sm:text-2xl font-extrabold">
                         YogaMaster
                     </span>
-                </div>
+                </Link>
 
                 {!toggle ? (
                     <Bars3Icon
@@ -43,12 +47,18 @@ const Navbar = () => {
                         toggle ? "top-0" : "top-[-1000px]"
                     } flex flex-col sm:flex-row items-end bg-white justify-center p-4 pt-20 pb-8 gap-8 sm:gap-12 w-full sm:w-auto absolute left-0 sm:static sm:bg-transparent sm:p-0 transition-all duration-300 z-10`}
                 >
-                    <button className="py-2 px-4 bg-bg-transparent text-sm sm:text-base text-black font-medium rounded-xl border-2 border-rose-600 hover:bg-rose-600 hover:text-white">
+                    <Link
+                        to="/explore"
+                        className="py-2 px-4 bg-bg-transparent text-sm sm:text-base text-black font-medium rounded-xl border-2 border-rose-600 hover:bg-rose-600 hover:text-white"
+                    >
                         Explore
-                    </button>
-                    <button className="py-2 px-4 bg-rose-600 text-sm sm:text-base text-white font-medium rounded-xl border-2 border-rose-600 hover:bg-transparent hover:text-black">
+                    </Link>
+                    <Link
+                        to="/login"
+                        className="py-2 px-4 bg-rose-600 text-sm sm:text-base text-white font-medium rounded-xl border-2 border-rose-600 hover:bg-transparent hover:text-black"
+                    >
                         Login
-                    </button>
+                    </Link>
                 </div>
             </nav>
         </div>

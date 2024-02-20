@@ -1,4 +1,4 @@
-import hero_banner from "../assets/images/hero-banner-1.jpg";
+import hero_banner from "../assets/images/hero-banner.jpg";
 import SearchBar from "./SearchBar";
 
 const HeroBanner = () => {
