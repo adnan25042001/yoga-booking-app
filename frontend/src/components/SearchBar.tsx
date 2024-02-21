@@ -1,9 +1,9 @@
-import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
+import { FaMagnifyingGlass } from "react-icons/fa6";
 
 const SearchBar = () => {
     return (
         <form className="w-[97%] sm:w-[70%] md:w-[55%] flex space-x-3 p-2 justify-center items-center bg-white rounded-xl">
-            <MagnifyingGlassIcon className="h-6 w-6 text-rose-600 hidden xs:block" />
+            <FaMagnifyingGlass className="h-6 w-6 text-rose-600 hidden xs:block" />
             <input
                 type="text"
                 placeholder="Search for classes, teachers, or studios"

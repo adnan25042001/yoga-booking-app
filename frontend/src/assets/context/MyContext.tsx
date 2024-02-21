@@ -1,8 +1,13 @@
-import { createContext, useState, ReactNode } from "react";
+import { createContext, useState, ReactNode, useEffect } from "react";
+import { getAllYogaClass } from "../api/getAllYogaClass";
 
 interface ContextProps {
     toggle: boolean;
     setToggle: (toggle: boolean) => void;
+    isloading: boolean;
+    setIsLoading: (isLoading: boolean) => void;
+    yogaClasses: [YogaClass] | null;
+    setyogaClasses: (yogaClasses: [YogaClass] | null) => void;
 }
 
 interface MyContextProps {
@@ -13,9 +18,27 @@ export const Context = createContext<ContextProps | undefined>(undefined);
 
 const MyContext = ({ children }: MyContextProps) => {
     const [toggle, setToggle] = useState<boolean>(false);
+    const [isloading, setIsLoading] = useState<boolean>(true);
+    const [yogaClasses, setyogaClasses] = useState<[YogaClass] | null>(null);
+
+    useEffect(() => {
+        getAllYogaClass().then((data) => {
+            setyogaClasses(data);
+        });
+        setIsLoading(false);
+    }, []);
 
     return (
-        <Context.Provider value={{ toggle, setToggle }}>
+        <Context.Provider
+            value={{
+                toggle,
+                setToggle,
+                isloading,
+                setIsLoading,
+                yogaClasses,
+                setyogaClasses,
+            }}
+        >
             {children}
         </Context.Provider>
     );

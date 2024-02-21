@@ -1,8 +1,8 @@
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/16/solid";
 import logo from "../assets/images/logo.png";
 import { Context } from "../assets/context/MyContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { HiMenuAlt1, HiX } from "react-icons/hi";
 
 const Navbar = () => {
     const context = useContext(Context);
@@ -31,12 +31,12 @@ const Navbar = () => {
                 </Link>
 
                 {!toggle ? (
-                    <Bars3Icon
+                    <HiMenuAlt1
                         className="h-8 w-8 cursor-pointer block sm:hidden rounded-md hover:bg-gray-200 z-50"
                         onClick={() => setToggle(true)}
                     />
                 ) : (
-                    <XMarkIcon
+                    <HiX
                         className="h-8 w-8 cursor-pointer block sm:hidden rounded-md hover:bg-gray-200 z-50"
                         onClick={() => setToggle(false)}
                     />

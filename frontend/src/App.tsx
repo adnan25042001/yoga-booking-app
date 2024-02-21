@@ -4,17 +4,20 @@ import Navbar from "./components/Navbar";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Explore from "./components/Explore";
+import AdminLogin from "./components/Admin/AdminLogin";
+import PageNotFound from "./components/PageNotFound";
+import AdminAddYogaClass from "./components/Admin/AdminAddYogaClass";
 
 const App = () => {
     return (
         <>
             <BrowserRouter>
-                <Navbar />
                 <Routes>
                     <Route
                         path="/"
                         element={
                             <>
+                                <Navbar />
                                 <Home />
                             </>
                         }
@@ -23,6 +26,7 @@ const App = () => {
                         path="/explore"
                         element={
                             <>
+                                <Navbar />
                                 <Explore />
                             </>
                         }
@@ -31,6 +35,7 @@ const App = () => {
                         path="/login"
                         element={
                             <>
+                                <Navbar />
                                 <Login />
                             </>
                         }
@@ -39,10 +44,17 @@ const App = () => {
                         path="/signup"
                         element={
                             <>
+                                <Navbar />
                                 <Signup />
                             </>
                         }
                     />
+                    <Route path="/admin/login" element={<AdminLogin />} />
+                    <Route
+                        path="/admin/addyogaclass"
+                        element={<AdminAddYogaClass />}
+                    />
+                    <Route path="*" element={<PageNotFound />} />
                 </Routes>
             </BrowserRouter>
         </>

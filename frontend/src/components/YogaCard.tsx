@@ -1,32 +1,49 @@
-import yoga from "../assets/images/yoga.png";
+import { AiFillStar } from "react-icons/ai";
 
-const YogaCard = () => {
+
+
+type Props = {
+    yoga: YogaClass;
+};
+
+const YogaCard = ({ yoga }: Props) => {
     return (
-        <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-3">
-            <div className="md:flex">
-                <div className="md:flex-shrink-0">
-                    <img
-                        className="h-48 w-full object-cover md:w-48"
-                        src={yoga}
-                        alt="Yoga className"
-                    />
+        <div className="flex flex-col shadow-lg rounded-lg hover:scale-105 transition-all hover:shadow-xl p-4">
+            <div className="flex space-x-6">
+                <img
+                    className="h-28 w-28 object-cover rounded-lg"
+                    src={yoga.image}
+                    alt={yoga.name}
+                />
+                <div>
+                    <h2 className="text-xl font-bold line-clamp-2 mb-4 text-rose-600">
+                        {yoga.name}
+                    </h2>
+                    <p className="text-sm font-medium text-gray-400 mb-1">
+                        for {yoga.level}
+                    </p>
+                    <p className="text-sm font-medium text-gray-400 line-clamp-1">
+                        By {yoga.instructor}{" "}
+                        {yoga.organization && `| ${yoga.organization}`}
+                    </p>
                 </div>
-                <div className="p-8">
-                    <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                        Yoga className
-                    </div>
-                    <p className="block mt-1 text-lg leading-tight font-medium text-black">
-                        Difficulty Level: Beginner
+            </div>
+            <div className="flex space-x-6">
+                <div>
+                    <AiFillStar/>
+                    <p className="py-2 text-gray-700">
+                        Rating: {yoga.rating}/5
                     </p>
-                    <p className="mt-2 text-gray-500">Level: Level 1</p>
-                    <p className="mt-2 text-gray-500">Instructor: John Doe</p>
-                    <p className="mt-2 text-gray-500">
-                        Timing: 6:00 AM - 7:00 AM
+                </div>
+                <div>
+                    <p className="py-2 text-gray-700">
+                        Start Time: {yoga.startTime}
                     </p>
-                    <p className="mt-2 text-gray-500">Price: $10</p>
-                    <button className="mt-5 px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
-                        Join
-                    </button>
+                    <p className="py-2 text-gray-700">
+                        Duration: {yoga.duration} minutes
+                    </p>
+                    <p className="py-2 text-gray-700">Style: {yoga.style}</p>
+                    <p className="py-2 text-gray-700">Price: ${yoga.price}</p>
                 </div>
             </div>
         </div>
