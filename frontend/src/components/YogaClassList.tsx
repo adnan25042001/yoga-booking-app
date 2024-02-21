@@ -17,7 +17,10 @@ const YogaClassList = () => {
 
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 ms:grid-cols-3 gap-8">
-            {yogaClasses && yogaClasses.map((yoga) => <YogaCard yoga={yoga} />)}
+            {yogaClasses &&
+                yogaClasses.map((yoga) => (
+                    <YogaCard key={yoga._id} yoga={yoga} />
+                ))}
         </div>
     );
 };

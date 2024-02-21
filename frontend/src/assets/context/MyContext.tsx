@@ -8,6 +8,8 @@ interface ContextProps {
     setIsLoading: (isLoading: boolean) => void;
     yogaClasses: [YogaClass] | null;
     setyogaClasses: (yogaClasses: [YogaClass] | null) => void;
+    currentYogaClass: YogaClass | null;
+    setCurrentYogaClass: (currentYogaClass: YogaClass | null) => void;
 }
 
 interface MyContextProps {
@@ -20,6 +22,9 @@ const MyContext = ({ children }: MyContextProps) => {
     const [toggle, setToggle] = useState<boolean>(false);
     const [isloading, setIsLoading] = useState<boolean>(true);
     const [yogaClasses, setyogaClasses] = useState<[YogaClass] | null>(null);
+    const [currentYogaClass, setCurrentYogaClass] = useState<YogaClass | null>(
+        null
+    );
 
     useEffect(() => {
         getAllYogaClass().then((data) => {
@@ -37,6 +42,8 @@ const MyContext = ({ children }: MyContextProps) => {
                 setIsLoading,
                 yogaClasses,
                 setyogaClasses,
+                currentYogaClass,
+                setCurrentYogaClass,
             }}
         >
             {children}

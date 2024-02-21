@@ -7,6 +7,7 @@ import Explore from "./components/Explore";
 import AdminLogin from "./components/Admin/AdminLogin";
 import PageNotFound from "./components/PageNotFound";
 import AdminAddYogaClass from "./components/Admin/AdminAddYogaClass";
+import YogaClassDetails from "./components/YogaClassDetails";
 
 const App = () => {
     return (
@@ -28,6 +29,15 @@ const App = () => {
                             <>
                                 <Navbar />
                                 <Explore />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/yoga-class/:name"
+                        element={
+                            <>
+                                <Navbar />
+                                <YogaClassDetails />
                             </>
                         }
                     />
