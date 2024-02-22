@@ -24,10 +24,8 @@ const YogaClassList = ({ yogaClasses, size }: Props) => {
         );
     }
 
-    console.log(yogaClasses);
-
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 ms:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 ms:grid-cols-3 gap-8 mt-10">
             {yogaClasses &&
                 yogaClasses.map((yoga, i) => {
                     if (size && i >= size) return;

@@ -34,7 +34,7 @@ interface YogaClass {
     __v: number;
 }
 
-type level = "beginner" | "intermediate" | "advanced" | "kids";
+type level = "Beginner" | "Intermediate" | "Advanced" | "Kids";
 
 type WeekDays =
     | "Monday"

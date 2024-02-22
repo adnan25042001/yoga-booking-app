@@ -21,7 +21,7 @@ const Login = () => {
         console.log(cookies);
 
         // Check if auth-token is present
-        if (cookies["auth-token"]) {
+        if (cookies["auth-token"] && cookies["role"] == "USER") {
             navigate("/");
         }
     }, []);

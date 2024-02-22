@@ -3,7 +3,7 @@ import SearchBar from "./SearchBar";
 
 const HeroBanner = () => {
     return (
-        <div className="max-w-5xl mx-auto relative rounded-3xl h-[480px] mb-20 overflow-hidden">
+        <div className="max-w-5xl mx-auto relative rounded-3xl h-[480px] mb-10 overflow-hidden">
             <div
                 className="absolute inset-0 bg-no-repeat bg-cover bg-center"
                 style={{

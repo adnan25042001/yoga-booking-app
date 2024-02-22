@@ -8,6 +8,8 @@ import AdminLogin from "./components/Admin/AdminLogin";
 import PageNotFound from "./components/PageNotFound";
 import AdminAddYogaClass from "./components/Admin/AdminAddYogaClass";
 import YogaClassDetails from "./components/YogaClassDetails";
+import AdminDashBoard from "./components/Admin/AdminDashBoard";
+import AdminNavbar from "./components/Admin/AdminNavbar";
 
 const App = () => {
     return (
@@ -61,8 +63,22 @@ const App = () => {
                     />
                     <Route path="/admin/login" element={<AdminLogin />} />
                     <Route
+                        path="/admin/dashboard"
+                        element={
+                            <>
+                                <AdminNavbar />
+                                <AdminDashBoard />
+                            </>
+                        }
+                    />
+                    <Route
                         path="/admin/addyogaclass"
-                        element={<AdminAddYogaClass />}
+                        element={
+                            <>
+                                <AdminNavbar />
+                                <AdminAddYogaClass />
+                            </>
+                        }
                     />
                     <Route path="*" element={<PageNotFound />} />
                 </Routes>

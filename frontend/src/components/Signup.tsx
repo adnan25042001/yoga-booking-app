@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import imageUrl from "../assets/images/yoga.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { signupHandler } from "../assets/api/signup";
 
 const Signup = () => {
@@ -8,6 +8,25 @@ const Signup = () => {
     const [email, setEmail] = useState("");
     const [number, setNumber] = useState("");
     const [password, setPassword] = useState("");
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const cookies: { [key: string]: string } = document.cookie
+            .split(";")
+            .reduce((cookies, item) => {
+                const [name, value] = item.split("=");
+                cookies[name.trim()] = value;
+                return cookies;
+            }, {} as { [key: string]: string });
+
+        console.log(cookies);
+
+        // Check if auth-token is present
+        if (cookies["auth-token"] && cookies["role"] == "USER") {
+            navigate("/");
+        }
+    }, []);
 
     const handleSubmitSignupForm = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
