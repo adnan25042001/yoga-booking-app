@@ -35,6 +35,20 @@ const YogaClassDetails = () => {
         console.log(filled, half, empty);
     });
 
+    // useEffect(() => {
+    //     const cookies: { [key: string]: string } = document.cookie
+    //         .split(";")
+    //         .reduce((cookies, item) => {
+    //             const [name, value] = item.split("=");
+    //             cookies[name.trim()] = value;
+    //             return cookies;
+    //         }, {} as { [key: string]: string });
+    // }, []);
+
+    const handleBooking = () => {
+
+    }
+
     return (
         <div className="max-w-6xl mx-auto my-10 px-2 sm:px-3">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 xl:gap-32">
@@ -82,18 +96,27 @@ const YogaClassDetails = () => {
                     <div className="mb-1 font-semibold flex">
                         <span className="text-gray-400">RATING :</span>{" "}
                         <div className="flex space-x-1 justify-center items-center">
-                            {Array(filled).map((e) => (
-                                <FaStar key={e} className="text-rose-600" />
+                            {Array.from({ length: filled }).map((_, index) => (
+                                <FaStar key={index} className="text-rose-600" />
                             ))}
-                            {Array(half).map((e) => (
-                                <FaStarHalf key={e} className="text-rose-600" />
+                            {Array.from({ length: half }).map((_, index) => (
+                                <FaStarHalf
+                                    key={index}
+                                    className="text-rose-600"
+                                />
                             ))}
-                            {Array(empty).map((e) => (
-                                <FaRegStar key={e} className="text-rose-600" />
+                            {Array.from({ length: empty }).map((_, index) => (
+                                <FaRegStar
+                                    key={index}
+                                    className="text-rose-600"
+                                />
                             ))}
                         </div>
                     </div>
-                    <button className="py-2 mt-5 px-8 bg-rose-600 text-sm xs:text-base text-white font-medium rounded-lg border-2 border-rose-600 hover:bg-transparent hover:text-black cursor-pointer">
+                    <button
+                        onClick={handleBooking}
+                        className="py-2 mt-5 px-8 bg-rose-600 text-sm xs:text-base text-white font-medium rounded-lg border-2 border-rose-600 hover:bg-transparent hover:text-black cursor-pointer"
+                    >
                         Book Now
                     </button>
                 </div>

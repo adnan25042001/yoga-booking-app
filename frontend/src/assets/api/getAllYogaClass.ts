@@ -14,7 +14,7 @@ export const getAllYogaClass = async () => {
         console.log(data);
     }
 
-    const yogaClasses: [YogaClass] | null = data.yogaClass;
+    const yogaClasses: YogaClass[] | null = data.yogaClass;
 
     return yogaClasses;
 };

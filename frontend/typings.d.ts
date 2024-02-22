@@ -25,7 +25,7 @@ interface YogaClass {
     startTime: string;
     endTime: string;
     duration: number;
-    frequency: [WeekDays];
+    frequency: WeekDays[];
     healthCondition: string;
     style: string;
     price: number;

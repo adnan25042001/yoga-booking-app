@@ -11,7 +11,16 @@ const Navbar = () => {
         throw new Error("Navbar must be used within a MyContext provider");
     }
 
-    const { toggle, setToggle } = context;
+    const { toggle, setToggle, isLoggedIn, setIsLoggedIn } = context;
+
+    const handleLogout = () => {
+        const expiryDate = new Date();
+        expiryDate.setDate(expiryDate.getDate() - 7);
+        document.cookie = `auth-token=; expires=${expiryDate.toUTCString()}; path=/`;
+        document.cookie = `role=; expires=${expiryDate.toUTCString()}; path=/`;
+
+        setIsLoggedIn(false);
+    };
 
     return (
         <div className="border-b-[1px] border-b-gray-400/40">
@@ -53,12 +62,21 @@ const Navbar = () => {
                     >
                         Explore
                     </Link>
-                    <Link
-                        to="/login"
-                        className="py-2 px-4 bg-rose-600 text-sm sm:text-base text-white font-medium rounded-xl border-2 border-rose-600 hover:bg-transparent hover:text-black"
-                    >
-                        Login
-                    </Link>
+                    {isLoggedIn ? (
+                        <button
+                            onClick={handleLogout}
+                            className="py-2 px-4 bg-rose-600 text-sm sm:text-base text-white font-medium rounded-xl border-2 border-rose-600 hover:bg-transparent hover:text-black"
+                        >
+                            Logout
+                        </button>
+                    ) : (
+                        <Link
+                            to="/login"
+                            className="py-2 px-4 bg-rose-600 text-sm sm:text-base text-white font-medium rounded-xl border-2 border-rose-600 hover:bg-transparent hover:text-black"
+                        >
+                            Login
+                        </Link>
+                    )}
                 </div>
             </nav>
         </div>

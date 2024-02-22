@@ -1,7 +1,7 @@
 const url = import.meta.env.VITE_API_URL;
 
-export const loginHandler = async (loginData: LoginObj) => {
-    let res = await fetch(`${url}/auth/login`, {
+export const adminLoginHandler = async (loginData: AdminLoginObj) => {
+    let res = await fetch(`${url}/auth/admin/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

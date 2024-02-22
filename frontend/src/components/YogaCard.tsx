@@ -28,13 +28,15 @@ const YogaCard = ({ yoga }: Props) => {
     const { setCurrentYogaClass } = context;
 
     useEffect(() => {
-        setFilled(Math.floor(yoga.rating));
-        setHalf(yoga.rating % 1 !== 0 ? 1 : 0);
-        setEmpty(0);
-        setDays(yoga.frequency.length);
+        const filledStars = Math.floor(yoga.rating);
+        const halfStars = yoga.rating % 1 !== 0 ? 1 : 0;
+        const emptyStars = 5 - filledStars - halfStars; // assuming total stars is 5
 
-        console.log(yoga.frequency);
-    });
+        setFilled(filledStars);
+        setHalf(halfStars);
+        setEmpty(emptyStars);
+        setDays(yoga.frequency.length);
+    }, [yoga]);
 
     return (
         <div className="flex flex-col shadow-lg rounded-lg hover:scale-105 transition-all hover:shadow-xl gap-4 p-4">
@@ -60,14 +62,14 @@ const YogaCard = ({ yoga }: Props) => {
             <div className="flex space-x-6">
                 <div className="w-28 flex flex-col justify-between items-start">
                     <div className="flex space-x-1 justify-center items-center ml-1">
-                        {Array(filled).map((e) => (
-                            <FaStar key={e} className="text-rose-600" />
+                        {Array.from({ length: filled }).map((_, index) => (
+                            <FaStar key={index} className="text-rose-600" />
                         ))}
-                        {Array(half).map((e) => (
-                            <FaStarHalf key={e} className="text-rose-600" />
+                        {Array.from({ length: half }).map((_, index) => (
+                            <FaStarHalf key={index} className="text-rose-600" />
                         ))}
-                        {Array(empty).map((e) => (
-                            <FaRegStar key={e} className="text-rose-600" />
+                        {Array.from({ length: empty }).map((_, index) => (
+                            <FaRegStar key={index} className="text-rose-600" />
                         ))}
                     </div>
                     <Link

@@ -1,12 +1,30 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import imageUrl from "../assets/images/yoga.png";
 import { loginHandler } from "../assets/api/login";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [number, setNumber] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const cookies: { [key: string]: string } = document.cookie
+            .split(";")
+            .reduce((cookies, item) => {
+                const [name, value] = item.split("=");
+                cookies[name.trim()] = value;
+                return cookies;
+            }, {} as { [key: string]: string });
+
+        console.log(cookies);
+
+        // Check if auth-token is present
+        if (cookies["auth-token"]) {
+            navigate("/");
+        }
+    }, []);
 
     const handleSubmitLoginForm = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -17,7 +35,9 @@ const Login = () => {
             password,
         };
 
-        loginHandler(data);
+        loginHandler(data).then(() => {
+            navigate("/");
+        });
     };
 
     return (
