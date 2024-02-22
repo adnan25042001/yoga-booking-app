@@ -1,6 +1,6 @@
 # Yoga Master
 
-This is a yoga class booking application. It allows users to explore different yoga classes, book a class, and manage their bookings. The application is split into a frontend and a backend. You can visit the webiste here (https://master-yoga.vercel.app/)[https://master-yoga.vercel.app/]
+This is a yoga class booking application. It allows users to explore different yoga classes, book a class, and manage their bookings. The application is split into a frontend and a backend. You can visit the webiste here [https://master-yoga.vercel.app/](https://master-yoga.vercel.app/)
 
 ## Frontend
 
