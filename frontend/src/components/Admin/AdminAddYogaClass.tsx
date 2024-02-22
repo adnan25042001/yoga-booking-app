@@ -1,8 +1,8 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AdminAddYogaClass = () => {
-    const [time, setTime] = useState<string>("");
+    // const [time, setTime] = useState<string>("");
     const navigate = useNavigate();
     const [selectedDays, setSelectedDays] = useState<Record<string, boolean>>({
         Monday: false,
