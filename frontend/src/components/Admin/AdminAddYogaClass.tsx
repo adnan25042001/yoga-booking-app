@@ -39,31 +39,31 @@ const AdminAddYogaClass = () => {
         });
     };
 
-    const handleTimeChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setTime(e.target.value);
-    };
+    // const handleTimeChange = (e: ChangeEvent<HTMLInputElement>) => {
+    //     setTime(e.target.value);
+    // };
 
-    const handleSubmitYogaClassForm = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    // const handleSubmitYogaClassForm = (e: FormEvent<HTMLFormElement>) => {
+    //     e.preventDefault();
 
-        // Split the time into hours and minutes
-        const [h, minutes] = time.split(":");
+    //     // Split the time into hours and minutes
+    //     const [h, minutes] = time.split(":");
 
-        const hours = +h;
+    //     const hours = +h;
 
-        // Determine if the time is AM or PM
-        const period = hours >= 12 ? "PM" : "AM";
+    //     // Determine if the time is AM or PM
+    //     const period = hours >= 12 ? "PM" : "AM";
 
-        // Convert the hours to 12-hour format
-        const hours12 = hours > 12 ? hours - 12 : hours === 0 ? 12 : hours;
+    //     // Convert the hours to 12-hour format
+    //     const hours12 = hours > 12 ? hours - 12 : hours === 0 ? 12 : hours;
 
-        // Format the time as a string with AM/PM
-        const time12 = `${hours12}:${minutes} ${period}`;
+    //     // Format the time as a string with AM/PM
+    //     const time12 = `${hours12}:${minutes} ${period}`;
 
-        console.log(time12);
+    //     console.log(time12);
 
-        console.log(time);
-    };
+    //     console.log(time);
+    // };
 
     return (
         <div className="max-w-6xl mx-auto my-10 px-2 sm:px-3">
