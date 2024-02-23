@@ -35,8 +35,6 @@ router.post("/add", fetchUser, checkRole("ADMIN"), async (req, res) => {
             image,
         } = req.body;
 
-        console.log(req.body);
-
         const newYogaClass = new YogaClass({
             name,
             level,

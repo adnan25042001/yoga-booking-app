@@ -1,18 +1,73 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { addNewYogaClassHandler } from "../../assets/api/admin/addNewYogaClass";
+import { getAllYogaClass } from "../../assets/api/getAllYogaClass";
+import { Context } from "../../assets/context/MyContext";
+
+const level = ["Beginner", "Intermediate", "Advanced", "Kids"];
+const healthCondition = [
+    "None",
+    "Pregnancy",
+    "Diabetes",
+    "PCOS",
+    "Blood Pressure",
+    "Back Pain",
+    "Hypertension",
+    "Arthritis",
+];
+const style = [
+    "Power Yoga",
+    "Hatha Yoga",
+    "Ashtanga Yoga",
+    "Sivananda Yoga",
+    "Iyengar Yoga",
+    "Yin Yoga",
+    "Satyananda Yoga",
+];
+
+const initialSelectedDays = {
+    Monday: false,
+    Tuesday: false,
+    Wednesday: false,
+    Thursday: false,
+    Friday: false,
+    Saturday: false,
+    Sunday: false,
+} as Record<WeekDays, boolean>;
+
+const initialFormState: YogaClass = {
+    _id: "",
+    name: "",
+    level: "Beginner",
+    instructor: "",
+    organization: "",
+    startTime: "",
+    endTime: "",
+    duration: 0,
+    frequency: [],
+    healthCondition: "",
+    style: "Power Yoga",
+    price: 0,
+    rating: 0,
+    image: "",
+    __v: 0,
+};
 
 const AdminAddYogaClass = () => {
-    // const [time, setTime] = useState<string>("");
+    const [formState, setFormState] = useState<YogaClass>(initialFormState);
     const navigate = useNavigate();
-    const [selectedDays, setSelectedDays] = useState<Record<string, boolean>>({
-        Monday: false,
-        Tuesday: false,
-        Wednesday: false,
-        Thursday: false,
-        Friday: false,
-        Saturday: false,
-        Sunday: false,
-    });
+    const [selectedDays, setSelectedDays] =
+        useState<Record<string, boolean>>(initialSelectedDays);
+    const [startTime, setStartTime] = useState<string>("");
+    const [endTime, setEndTime] = useState<string>("");
+
+    const context = useContext(Context);
+
+    if (!context) {
+        throw new Error("MyContext provider error");
+    }
+
+    const { setyogaClasses } = context;
 
     useEffect(() => {
         const cookies: { [key: string]: string } = document.cookie
@@ -32,6 +87,33 @@ const AdminAddYogaClass = () => {
         }
     }, []);
 
+    // Convert 24-hour format time to 12-hour format
+    const convertTo12Hour = (time: string): string => {
+        let [hours, minutes] = time.split(":");
+        let period = +hours >= 12 ? "PM" : "AM";
+        let hoursNumber = +hours % 12 || 12;
+        return `${hoursNumber}:${minutes} ${period}`;
+    };
+
+    const calculateDuration = (startTime: string, endTime: string): number => {
+        let start = new Date(`2024-01-01T${startTime}Z`);
+        let end = new Date(`2024-01-01T${endTime}Z`);
+
+        let duration = (end.getTime() - start.getTime()) / 60000; // duration in minutes
+        return duration;
+    };
+
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { id, value } = event.target;
+        setFormState({ ...formState, [id]: value });
+    };
+
+    const handleInputSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const { id, value } = event.target;
+
+        setFormState({ ...formState, [id]: value === "None" ? "" : value });
+    };
+
     const handleSelectDays = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSelectedDays({
             ...selectedDays,
@@ -39,38 +121,48 @@ const AdminAddYogaClass = () => {
         });
     };
 
-    // const handleTimeChange = (e: ChangeEvent<HTMLInputElement>) => {
-    //     setTime(e.target.value);
-    // };
+    const handleSubmitNewYogaClassForm = (
+        e: React.FormEvent<HTMLFormElement>
+    ) => {
+        e.preventDefault();
 
-    // const handleSubmitYogaClassForm = (e: FormEvent<HTMLFormElement>) => {
-    //     e.preventDefault();
+        formState.startTime = convertTo12Hour(startTime);
+        formState.endTime = convertTo12Hour(endTime);
 
-    //     // Split the time into hours and minutes
-    //     const [h, minutes] = time.split(":");
+        formState.duration = calculateDuration(startTime, endTime);
 
-    //     const hours = +h;
+        for (let day in selectedDays) {
+            if (selectedDays[day]) {
+                formState.frequency.push(day as WeekDays);
+            }
+        }
 
-    //     // Determine if the time is AM or PM
-    //     const period = hours >= 12 ? "PM" : "AM";
+        setFormState({ ...formState });
 
-    //     // Convert the hours to 12-hour format
-    //     const hours12 = hours > 12 ? hours - 12 : hours === 0 ? 12 : hours;
+        addNewYogaClassHandler(formState);
 
-    //     // Format the time as a string with AM/PM
-    //     const time12 = `${hours12}:${minutes} ${period}`;
+        getAllYogaClass().then((data) => {
+            setyogaClasses(data);
+        });
 
-    //     console.log(time12);
+        setStartTime("");
 
-    //     console.log(time);
-    // };
+        setEndTime("");
+
+        setSelectedDays({ ...initialSelectedDays });
+
+        setFormState({ ...initialFormState });
+    };
 
     return (
         <div className="max-w-6xl mx-auto my-10 px-2 sm:px-3">
             <h1 className="text-3xl sm:text-4xl mb-10 text-center font-bold text-rose-600">
                 Add New Yoga Class
             </h1>
-            <form className="flex flex-col mx-auto w-full gap-6 shadow-lg px-3 pt-8 pb-14  rounded-lg">
+            <form
+                onSubmit={handleSubmitNewYogaClassForm}
+                className="flex flex-col mx-auto w-full gap-6 shadow-lg px-3 pt-8 pb-14  rounded-lg"
+            >
                 <label
                     htmlFor="name"
                     className="text-gray-800 font-semibold flex flex-col"
@@ -79,6 +171,9 @@ const AdminAddYogaClass = () => {
                     <input
                         id="name"
                         type="text"
+                        value={formState.name}
+                        onChange={handleInputChange}
+                        required
                         placeholder="Enter yoga class name"
                         className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
                     />
@@ -92,6 +187,9 @@ const AdminAddYogaClass = () => {
                         <input
                             id="instructor"
                             type="text"
+                            required
+                            value={formState.instructor}
+                            onChange={handleInputChange}
                             placeholder="Enter instructor name"
                             className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
                         />
@@ -105,6 +203,8 @@ const AdminAddYogaClass = () => {
                             id="organization"
                             type="text"
                             placeholder="Enter organization name"
+                            value={formState.organization}
+                            onChange={handleInputChange}
                             className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
                         />
                     </label>
@@ -112,13 +212,16 @@ const AdminAddYogaClass = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 w-full gap-6">
                     <div className="grid grid-cols-2 w-full gap-6">
                         <label
-                            htmlFor="start_time"
+                            htmlFor="startTime"
                             className="text-gray-800 font-semibold flex flex-col"
                         >
                             Start time
                             <input
-                                id="start_time"
+                                id="startTime"
                                 type="time"
+                                required
+                                value={startTime}
+                                onChange={(e) => setStartTime(e.target.value)}
                                 className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
                             />
                         </label>
@@ -126,10 +229,13 @@ const AdminAddYogaClass = () => {
                             htmlFor="end_time"
                             className="text-gray-800 font-semibold flex flex-col"
                         >
-                            Start time
+                            End time
                             <input
-                                id="end_time"
+                                id="endTime"
                                 type="time"
+                                required
+                                value={endTime}
+                                onChange={(e) => setEndTime(e.target.value)}
                                 className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
                             />
                         </label>
@@ -140,12 +246,17 @@ const AdminAddYogaClass = () => {
                         </p>
                         <select
                             name="level"
+                            id="level"
+                            required
+                            value={formState.level}
+                            onChange={handleInputSelect}
                             className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1 w-full"
                         >
-                            <option value="beginner">Beginner</option>
-                            <option value="intermediate">Intermediate</option>
-                            <option value="advanced">Advanced</option>
-                            <option value="kids">Kids</option>
+                            {level.map((ele) => (
+                                <option key={ele} value={ele}>
+                                    {ele}
+                                </option>
+                            ))}
                         </select>
                     </div>
                 </div>
@@ -174,30 +285,41 @@ const AdminAddYogaClass = () => {
                     </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 w-full gap-6">
-                    <label
-                        htmlFor="healthCondition"
-                        className="text-gray-800 font-semibold flex flex-col"
-                    >
-                        HealthCondition
-                        <input
+                    <div className="w-full">
+                        <p className="text-gray-800 font-semibold ">
+                            HealthCondition
+                        </p>
+                        <select
+                            name="healthCondition"
                             id="healthCondition"
-                            type="text"
-                            placeholder="Enter healthCondition"
-                            className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
-                        />
-                    </label>
-                    <label
-                        htmlFor="style"
-                        className="text-gray-800 font-semibold flex flex-col"
-                    >
-                        Style
-                        <input
+                            value={formState.healthCondition}
+                            onChange={handleInputSelect}
+                            className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1 w-full"
+                        >
+                            {healthCondition.map((ele) => (
+                                <option key={ele} value={ele}>
+                                    {ele}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div className="w-full">
+                        <p className="text-gray-800 font-semibold ">Style</p>
+                        <select
+                            name="style"
                             id="style"
-                            type="text"
-                            placeholder="Enter style name"
-                            className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
-                        />
-                    </label>
+                            value={formState.style}
+                            onChange={handleInputSelect}
+                            className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1 w-full"
+                        >
+                            {style.map((ele) => (
+                                <option key={ele} value={ele}>
+                                    {ele}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 w-full gap-6">
                     <div className="grid grid-cols-2 w-full gap-6">
@@ -207,8 +329,10 @@ const AdminAddYogaClass = () => {
                         >
                             Price
                             <input
-                                id="Price"
+                                id="price"
                                 type="number"
+                                value={formState.price}
+                                onChange={handleInputChange}
                                 placeholder="Enter Price"
                                 className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
                             />
@@ -221,6 +345,11 @@ const AdminAddYogaClass = () => {
                             <input
                                 id="rating"
                                 type="number"
+                                step="0.1"
+                                min={0}
+                                max={5}
+                                value={formState.rating}
+                                onChange={handleInputChange}
                                 placeholder="Enter ratings"
                                 className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
                             />
@@ -234,6 +363,8 @@ const AdminAddYogaClass = () => {
                         <input
                             id="image"
                             type="url"
+                            value={formState.image}
+                            onChange={handleInputChange}
                             required
                             placeholder="Enter image url"
                             className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"

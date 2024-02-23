@@ -19,22 +19,22 @@ interface AdminLoginObj {
 interface YogaClass {
     _id: string;
     name: string;
-    level: level;
+    level: Level;
     instructor: string;
     organization: string;
     startTime: string;
     endTime: string;
     duration: number;
     frequency: WeekDays[];
-    healthCondition: string;
-    style: string;
+    healthCondition: healthCondition;
+    style: style;
     price: number;
     rating: number;
     image: string;
     __v: number;
 }
 
-type level = "Beginner" | "Intermediate" | "Advanced" | "Kids";
+type Level = "Beginner" | "Intermediate" | "Advanced" | "Kids";
 
 type WeekDays =
     | "Monday"
@@ -44,3 +44,22 @@ type WeekDays =
     | "Friday"
     | "Saturday"
     | "Sunday";
+
+type healthCondition =
+    | "Pregnancy"
+    | "Diabetes"
+    | "PCOS"
+    | "Blood Pressure"
+    | "Back Pain"
+    | "Hypertension"
+    | "Arthritis"
+    | "";
+
+type style =
+    | "Hatha Yoga"
+    | "Power Yoga"
+    | "Ashtanga Yoga"
+    | "Sivananda Yoga"
+    | "Iyengar Yoga"
+    | "Yin Yoga"
+    | "Satyananda Yoga";

@@ -6,6 +6,13 @@ This is a yoga class booking application. It allows users to explore different y
 
 The frontend of this is application built with React, TypeScript, and Tailwind CSS. The application is designed for booking yoga classes and has separate interfaces for users and admins.
 
+## Admin Access
+
+You can visit the admin login page here [https://master-yoga.vercel.app/admin/login](https://master-yoga.vercel.app/admin/login)
+
+- `username` : `admin`
+- `password` : `admin`
+
 ## Features
 
 -   **User Interface**: Users can register and log in to the application. They can view all available yoga classes, search for specific classes, and apply filters to narrow down their options. Users can also view detailed information about each class on a separate page and book their preferred yoga class.

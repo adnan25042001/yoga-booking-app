@@ -48,11 +48,11 @@ const YogaClassSchema = new mongoose.Schema({
             "Sunday",
         ], // Only these values are allowed
         required: true,
+        
     },
 
     healthCondition: {
         type: String,
-        required: true,
     },
 
     style: {

@@ -56,7 +56,7 @@ const MyContext = ({ children }: MyContextProps) => {
             }, {} as { [key: string]: string });
 
         // Check if auth-token is present
-        if (cookies["auth-token"]) {
+        if (cookies["auth-token"] && cookies["role"] === "USER") {
             setIsLoggedIn(true);
         } else {
             setIsLoggedIn(false);

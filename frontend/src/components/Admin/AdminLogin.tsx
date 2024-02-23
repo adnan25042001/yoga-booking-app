@@ -17,8 +17,6 @@ const AdminLogin = () => {
                 return cookies;
             }, {} as { [key: string]: string });
 
-        console.log(cookies);
-
         // Check if auth-token is present
         if (cookies["auth-token"] && cookies["role"] == "ADMIN") {
             navigate("/admin/dashboard");
@@ -34,6 +32,7 @@ const AdminLogin = () => {
         };
 
         adminLoginHandler(data).then(() => {
+            
             navigate("/admin/dashboard");
         });
     };

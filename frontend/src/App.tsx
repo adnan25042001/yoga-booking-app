@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Login from "./components/Login";
@@ -10,11 +10,23 @@ import AdminAddYogaClass from "./components/Admin/AdminAddYogaClass";
 import YogaClassDetails from "./components/YogaClassDetails";
 import AdminDashBoard from "./components/Admin/AdminDashBoard";
 import AdminNavbar from "./components/Admin/AdminNavbar";
+import { useEffect } from "react";
+
+const ScrollToTop = () => {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+
+    return null;
+};
 
 const App = () => {
     return (
         <>
             <BrowserRouter>
+                <ScrollToTop />
                 <Routes>
                     <Route
                         path="/"

@@ -1,12 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../assets/context/MyContext";
 import { useNavigate } from "react-router-dom";
-import { FaRegStar, FaStar, FaStarHalf } from "react-icons/fa6";
+import { FaStar, FaStarHalf } from "react-icons/fa6";
 
 const YogaClassDetails = () => {
     const [filled, setFilled] = useState<number>(0);
     const [half, setHalf] = useState<number>(0);
-    const [empty, setEmpty] = useState<number>(5);
     const [days, setDays] = useState<number>(7);
     const context = useContext(Context);
     const navigate = useNavigate();
@@ -29,10 +28,7 @@ const YogaClassDetails = () => {
 
         setFilled(Math.floor(currentYogaClass.rating));
         setHalf(currentYogaClass?.rating % 1 !== 0 ? 1 : 0);
-        setEmpty(0);
         setDays(currentYogaClass.frequency.length);
-
-        console.log(filled, half, empty);
     });
 
     // useEffect(() => {
@@ -46,8 +42,10 @@ const YogaClassDetails = () => {
     // }, []);
 
     const handleBooking = () => {
-
-    }
+        setTimeout(() => {
+            alert("Yoga Class Booked Successfully:)");
+        }, 1000);
+    };
 
     return (
         <div className="max-w-6xl mx-auto my-10 px-2 sm:px-3">
@@ -56,7 +54,7 @@ const YogaClassDetails = () => {
                     <img
                         src={currentYogaClass?.image}
                         alt={currentYogaClass?.name}
-                        className="h-full w-full object-cover"
+                        className="h-full w-full object-cover rounded-lg"
                     />
                 </div>
                 <div className="p-10 shadow-lg hover:shadow-xl">
@@ -101,12 +99,6 @@ const YogaClassDetails = () => {
                             ))}
                             {Array.from({ length: half }).map((_, index) => (
                                 <FaStarHalf
-                                    key={index}
-                                    className="text-rose-600"
-                                />
-                            ))}
-                            {Array.from({ length: empty }).map((_, index) => (
-                                <FaRegStar
                                     key={index}
                                     className="text-rose-600"
                                 />

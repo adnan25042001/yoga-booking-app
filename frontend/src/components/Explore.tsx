@@ -28,7 +28,7 @@ const Explore = () => {
     }, [duplicateYogaClasses]);
 
     return (
-        <div className="max-w-6xl mx-auto my-10 px-2 sm:px-3">
+        <div className="max-w-6xl mx-auto my-10 px-3 sm:px-3">
             <HeroBanner />
             <FilterYogaClass />
             <YogaClassList yogaClasses={searchResults} size={null} />
