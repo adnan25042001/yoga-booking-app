@@ -50,15 +50,15 @@ const YogaClassDetails = () => {
     return (
         <div className="max-w-6xl mx-auto my-10 px-2 sm:px-3">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 xl:gap-32">
-                <div className="h-[380px] p-4 rounded-xl pb-16 shadow-lg hover:shadow-xl">
+                <div className="h-[380px] p-4 rounded-xl pb-16 shadow-lg hover:shadow-xl bg-white">
                     <img
                         src={currentYogaClass?.image}
                         alt={currentYogaClass?.name}
                         className="h-full w-full object-cover rounded-lg"
                     />
                 </div>
-                <div className="p-10 shadow-lg hover:shadow-xl">
-                    <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-rose-600">
+                <div className="p-10 shadow-lg hover:shadow-xl bg-white">
+                    <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-mainClr">
                         {currentYogaClass?.name}
                     </h1>
                     <p className="mb-1 font-semibold">
@@ -95,19 +95,19 @@ const YogaClassDetails = () => {
                         <span className="text-gray-400">RATING :</span>{" "}
                         <div className="flex space-x-1 justify-center items-center">
                             {Array.from({ length: filled }).map((_, index) => (
-                                <FaStar key={index} className="text-rose-600" />
+                                <FaStar key={index} className="text-mainClr" />
                             ))}
                             {Array.from({ length: half }).map((_, index) => (
                                 <FaStarHalf
                                     key={index}
-                                    className="text-rose-600"
+                                    className="text-mainClr"
                                 />
                             ))}
                         </div>
                     </div>
                     <button
                         onClick={handleBooking}
-                        className="py-2 mt-5 px-8 bg-rose-600 text-sm xs:text-base text-white font-medium rounded-lg border-2 border-rose-600 hover:bg-transparent hover:text-black cursor-pointer"
+                        className="py-2 mt-5 px-8 bg-mainClr text-sm xs:text-base text-white font-medium rounded-lg border-2 border-mainClr hover:bg-transparent hover:text-black cursor-pointer"
                     >
                         Book Now
                     </button>

@@ -20,6 +20,8 @@ const AdminNavbar = () => {
         document.cookie = `auth-token=; expires=${expiryDate.toUTCString()}; path=/`;
         document.cookie = `role=; expires=${expiryDate.toUTCString()}; path=/`;
 
+        setToggle(false);
+
         navigate("/");
     };
     return (
@@ -58,13 +60,14 @@ const AdminNavbar = () => {
                 >
                     <Link
                         to="/admin/addyogaclass"
-                        className="py-2 px-4 bg-bg-transparent text-sm sm:text-base text-black font-medium rounded-xl border-2 border-rose-600 hover:bg-rose-600 hover:text-white"
+                        onClick={() => setToggle(false)}
+                        className="py-2 px-4 bg-bg-transparent text-sm sm:text-base text-black font-medium rounded-xl border-2 border-mainClr hover:bg-mainClr hover:text-white"
                     >
                         Add Yoga Class
                     </Link>
                     <button
                         onClick={handleLogout}
-                        className="py-2 px-4 bg-rose-600 text-sm sm:text-base text-white font-medium rounded-xl border-2 border-rose-600 hover:bg-transparent hover:text-black"
+                        className="py-2 px-4 bg-mainClr text-sm sm:text-base text-white font-medium rounded-xl border-2 border-mainClr hover:bg-transparent hover:text-black"
                     >
                         Logout
                     </button>

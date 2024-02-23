@@ -46,12 +46,12 @@ const Login = () => {
                 <img
                     src={imageUrl}
                     alt="image"
-                    className="w-28 h-28 rounded-full mb-3"
+                    className="w-28 h-28 rounded-full mb-3 border-4 border-mainClr"
                 />
 
                 <h2 className="text-2xl font-bold mb-1">Login</h2>
 
-                <p className="text-base font-semibold text-rose-600 mb-6">
+                <p className="text-base font-semibold text-mainClr mb-6">
                     Don't have an account?{" "}
                     <Link
                         to="/signup"
@@ -63,7 +63,7 @@ const Login = () => {
 
                 <form
                     onSubmit={handleSubmitLoginForm}
-                    className="flex flex-col mx-auto w-full gap-6"
+                    className="flex flex-col mx-auto w-full gap-6 bg-white px-4 pt-6 pb-8 rounded-lg shadow-lg"
                 >
                     <input
                         type="email"
@@ -72,7 +72,7 @@ const Login = () => {
                         onChange={(e) => {
                             setEmail(e.target.value);
                         }}
-                        className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none"
+                        className="bg-secondaryClr font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none"
                     />
                     <input
                         type="tel"
@@ -82,7 +82,7 @@ const Login = () => {
                             setNumber(e.target.value);
                         }}
                         pattern="[0-9]{10}"
-                        className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none"
+                        className="bg-secondaryClr font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none"
                     />
                     <input
                         type="password"
@@ -91,12 +91,12 @@ const Login = () => {
                         onChange={(e) => {
                             setPassword(e.target.value);
                         }}
-                        className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none"
+                        className="bg-secondaryClr font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none"
                     />
                     <input
                         type="submit"
                         value="Log in"
-                        className="bg-rose-600 text-white font-bold p-4 rounded-xl outline-none border-none cursor-pointer hover:shadow-lg hover:scale-95 transition-all"
+                        className="bg-mainClr text-white font-bold p-4 rounded-xl outline-none border-none cursor-pointer hover:shadow-lg hover:scale-95 transition-all"
                     />
                 </form>
             </div>

@@ -32,7 +32,6 @@ const AdminLogin = () => {
         };
 
         adminLoginHandler(data).then(() => {
-            
             navigate("/admin/dashboard");
         });
     };
@@ -43,33 +42,33 @@ const AdminLogin = () => {
                 <img
                     src={imageUrl}
                     alt="image"
-                    className="w-28 h-28 rounded-full mb-3"
+                    className="w-28 h-28 rounded-full mb-3 border-4 border-mainClr"
                 />
 
                 <h2 className="text-2xl font-bold mb-6">Admin Login</h2>
 
                 <form
                     onSubmit={handleAdminLoginForm}
-                    className="flex flex-col mx-auto w-full gap-6"
+                    className="flex flex-col mx-auto w-full gap-6 bg-white px-4 pt-6 pb-8 rounded-lg shadow-lg"
                 >
                     <input
                         type="text"
                         placeholder="Enter your username"
                         required
                         onChange={(e) => setUsername(e.target.value)}
-                        className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none"
+                        className="bg-secondaryClr font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none"
                     />
                     <input
                         type="password"
                         placeholder="Enter your password"
                         required
                         onChange={(e) => setPassword(e.target.value)}
-                        className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none"
+                        className="bg-secondaryClr font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none"
                     />
                     <input
                         type="submit"
                         value="Log in"
-                        className="bg-rose-600 text-white font-bold p-4 rounded-xl outline-none border-none cursor-pointer hover:shadow-lg hover:scale-95 transition-all"
+                        className="bg-mainClr text-white font-bold p-4 rounded-xl outline-none border-none cursor-pointer hover:shadow-lg hover:scale-95 transition-all"
                     />
                 </form>
             </div>

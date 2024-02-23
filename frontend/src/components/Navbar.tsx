@@ -19,6 +19,8 @@ const Navbar = () => {
         document.cookie = `auth-token=; expires=${expiryDate.toUTCString()}; path=/`;
         document.cookie = `role=; expires=${expiryDate.toUTCString()}; path=/`;
 
+        setToggle(false);
+
         setIsLoggedIn(false);
     };
 
@@ -58,21 +60,23 @@ const Navbar = () => {
                 >
                     <Link
                         to="/explore"
-                        className="py-2 px-4 bg-bg-transparent text-sm sm:text-base text-black font-medium rounded-xl border-2 border-rose-600 hover:bg-rose-600 hover:text-white"
+                        onClick={() => setToggle(false)}
+                        className="py-2 px-4 bg-bg-transparent text-sm sm:text-base text-black font-medium rounded-xl border-2 border-mainClr hover:bg-mainClr hover:text-white"
                     >
                         Explore
                     </Link>
                     {isLoggedIn ? (
                         <button
                             onClick={handleLogout}
-                            className="py-2 px-4 bg-rose-600 text-sm sm:text-base text-white font-medium rounded-xl border-2 border-rose-600 hover:bg-transparent hover:text-black"
+                            className="py-2 px-4 bg-mainClr text-sm sm:text-base text-white font-medium rounded-xl border-2 border-mainClr hover:bg-transparent hover:text-black"
                         >
                             Logout
                         </button>
                     ) : (
                         <Link
                             to="/login"
-                            className="py-2 px-4 bg-rose-600 text-sm sm:text-base text-white font-medium rounded-xl border-2 border-rose-600 hover:bg-transparent hover:text-black"
+                            onClick={() => setToggle(false)}
+                            className="py-2 px-4 bg-mainClr text-sm sm:text-base text-white font-medium rounded-xl border-2 border-mainClr hover:bg-transparent hover:text-black"
                         >
                             Login
                         </Link>

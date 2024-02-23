@@ -38,7 +38,7 @@ const YogaCard = ({ yoga }: Props) => {
                     alt={yoga.name}
                 />
                 <div>
-                    <h2 className="text-xl font-bold line-clamp-2 mb-4 text-rose-600">
+                    <h2 className="text-xl font-bold line-clamp-2 mb-4 text-mainClr">
                         {yoga.name} | {yoga.style}
                     </h2>
                     <p className="text-sm font-medium text-gray-400 mb-1 line-clamp-1">
@@ -55,10 +55,10 @@ const YogaCard = ({ yoga }: Props) => {
                 <div className="w-28 flex flex-col justify-between items-start">
                     <div className="flex space-x-1 justify-center items-center ml-1">
                         {Array.from({ length: filled }).map((_, index) => (
-                            <FaStar key={index} className="text-rose-600" />
+                            <FaStar key={index} className="text-mainClr" />
                         ))}
                         {Array.from({ length: half }).map((_, index) => (
-                            <FaStarHalf key={index} className="text-rose-600" />
+                            <FaStarHalf key={index} className="text-mainClr" />
                         ))}
                     </div>
                     <Link
@@ -66,7 +66,7 @@ const YogaCard = ({ yoga }: Props) => {
                             .replace(/\s+/g, "-")
                             .toLowerCase()}`}
                         onClick={() => setCurrentYogaClass(yoga)}
-                        className="py-2 px-8 bg-rose-600 text-sm xs:text-base text-white font-medium rounded-lg border-2 border-rose-600 hover:bg-transparent hover:text-black cursor-pointer"
+                        className="py-2 px-8 bg-mainClr text-sm xs:text-base text-white font-medium rounded-lg border-2 border-mainClr hover:bg-transparent hover:text-black cursor-pointer"
                     >
                         Join
                     </Link>
@@ -93,7 +93,7 @@ const YogaCard = ({ yoga }: Props) => {
                     </div>
                     <div>
                         <div className="flex space-x-3 justify-center items-center mb-1">
-                            <p className="font-medium text-rose-600 line-clamp-1">
+                            <p className="font-medium text-mainClr line-clamp-1">
                                 {yoga.startTime}
                             </p>
                             <span className="flex space-x-2 justify-center items-center">

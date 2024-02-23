@@ -33,7 +33,7 @@ const Home = () => {
             <HeroBanner />
             <YogaClassList yogaClasses={searchResults} size={3} />
             <div className="text-lg font-bold flex justify-center items-center mt-10">
-                <Link to="/explore" className="text-rose-600 relative group">
+                <Link to="/explore" className="text-mainClr relative group">
                     View All <FaArrowRight className="absolute top-[6px] -right-8 group-hover:-right-12 transition-all" />
                 </Link>
             </div>

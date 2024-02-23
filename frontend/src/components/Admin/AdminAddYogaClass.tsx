@@ -156,12 +156,12 @@ const AdminAddYogaClass = () => {
 
     return (
         <div className="max-w-6xl mx-auto my-10 px-2 sm:px-3">
-            <h1 className="text-3xl sm:text-4xl mb-10 text-center font-bold text-rose-600">
+            <h1 className="text-3xl sm:text-4xl mb-10 text-center font-bold text-mainClr">
                 Add New Yoga Class
             </h1>
             <form
                 onSubmit={handleSubmitNewYogaClassForm}
-                className="flex flex-col mx-auto w-full gap-6 shadow-lg px-3 pt-8 pb-14  rounded-lg"
+                className="flex flex-col mx-auto w-full gap-6 shadow-lg px-3 pt-8 pb-14  rounded-lg bg-white"
             >
                 <label
                     htmlFor="name"
@@ -175,7 +175,7 @@ const AdminAddYogaClass = () => {
                         onChange={handleInputChange}
                         required
                         placeholder="Enter yoga class name"
-                        className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
+                        className="bg-secondaryClr font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
                     />
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 w-full gap-6">
@@ -191,7 +191,7 @@ const AdminAddYogaClass = () => {
                             value={formState.instructor}
                             onChange={handleInputChange}
                             placeholder="Enter instructor name"
-                            className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
+                            className="bg-secondaryClr font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
                         />
                     </label>
                     <label
@@ -205,7 +205,7 @@ const AdminAddYogaClass = () => {
                             placeholder="Enter organization name"
                             value={formState.organization}
                             onChange={handleInputChange}
-                            className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
+                            className="bg-secondaryClr font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
                         />
                     </label>
                 </div>
@@ -222,7 +222,7 @@ const AdminAddYogaClass = () => {
                                 required
                                 value={startTime}
                                 onChange={(e) => setStartTime(e.target.value)}
-                                className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
+                                className="bg-secondaryClr font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
                             />
                         </label>
                         <label
@@ -236,7 +236,7 @@ const AdminAddYogaClass = () => {
                                 required
                                 value={endTime}
                                 onChange={(e) => setEndTime(e.target.value)}
-                                className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
+                                className="bg-secondaryClr font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
                             />
                         </label>
                     </div>
@@ -250,7 +250,7 @@ const AdminAddYogaClass = () => {
                             required
                             value={formState.level}
                             onChange={handleInputSelect}
-                            className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1 w-full"
+                            className="bg-secondaryClr font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1 w-full"
                         >
                             {level.map((ele) => (
                                 <option key={ele} value={ele}>
@@ -294,7 +294,7 @@ const AdminAddYogaClass = () => {
                             id="healthCondition"
                             value={formState.healthCondition}
                             onChange={handleInputSelect}
-                            className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1 w-full"
+                            className="bg-secondaryClr font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1 w-full"
                         >
                             {healthCondition.map((ele) => (
                                 <option key={ele} value={ele}>
@@ -311,7 +311,7 @@ const AdminAddYogaClass = () => {
                             id="style"
                             value={formState.style}
                             onChange={handleInputSelect}
-                            className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1 w-full"
+                            className="bg-secondaryClr font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1 w-full"
                         >
                             {style.map((ele) => (
                                 <option key={ele} value={ele}>
@@ -334,7 +334,7 @@ const AdminAddYogaClass = () => {
                                 value={formState.price}
                                 onChange={handleInputChange}
                                 placeholder="Enter Price"
-                                className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
+                                className="bg-secondaryClr font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
                             />
                         </label>
                         <label
@@ -351,7 +351,7 @@ const AdminAddYogaClass = () => {
                                 value={formState.rating}
                                 onChange={handleInputChange}
                                 placeholder="Enter ratings"
-                                className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
+                                className="bg-secondaryClr font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
                             />
                         </label>
                     </div>
@@ -367,14 +367,14 @@ const AdminAddYogaClass = () => {
                             onChange={handleInputChange}
                             required
                             placeholder="Enter image url"
-                            className="bg-rose-50 font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
+                            className="bg-secondaryClr font-semibold placeholder:text-gray-500 p-4 rounded-xl outline-none border-none mt-1"
                         />
                     </label>
                 </div>
                 <input
                     type="submit"
                     value="Add Yoga Class"
-                    className="bg-rose-600 text-white font-bold mt-6 p-4 rounded-xl outline-none border-none cursor-pointer hover:shadow-lg hover:scale-95 transition-all"
+                    className="bg-mainClr text-white font-bold mt-6 p-4 rounded-xl outline-none border-none cursor-pointer hover:shadow-lg hover:scale-95 transition-all"
                 />
             </form>
         </div>

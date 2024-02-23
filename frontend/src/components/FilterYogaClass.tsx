@@ -102,7 +102,7 @@ const FilterYogaClass = () => {
     };
 
     return (
-        <div className="max-w-6xl bg-gradient-to-r from-rose-400 to-yellow-400 rounded-lg px-8 flex items-center justify-between relative">
+        <div className="max-w-6xl bg-gradient-to-r from-mainClr to-yellow-400 rounded-lg px-8 flex items-center justify-between relative">
             <div
                 onClick={() => setSearchResults(yogaClasses)}
                 className="text-xl font-bold cursor-pointer"
@@ -135,7 +135,7 @@ const FilterYogaClass = () => {
                                             ? setHeading("")
                                             : setHeading(item.name);
                                     }}
-                                    className="cursor-pointer group px-4 py-3 text-rose-600 hover:text-white hover:bg-rose-600 transition-all"
+                                    className="cursor-pointer group px-4 py-3 text-mainClr hover:text-white hover:bg-mainClr transition-all"
                                 >
                                     <h2 className="flex items-center justify-between">
                                         <span className="text-lg font-semibold ">
@@ -163,7 +163,7 @@ const FilterYogaClass = () => {
                                             onClick={() =>
                                                 handleFilter(item.key, value)
                                             }
-                                            className="px-6 py-[1px] hover:bg-rose-500 text-gray-500 hover:text-white transition-all"
+                                            className="px-6 py-[1px] hover:bg-orange-500 text-gray-500 hover:text-white transition-all"
                                         >
                                             <p className="font-semibold cursor-pointer">
                                                 {value}

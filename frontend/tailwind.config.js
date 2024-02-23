@@ -7,6 +7,10 @@ export default {
                 xs: "425px",
                 ms: "860px",
             },
+            colors: {
+                mainClr: "#FF5722",
+                secondaryClr: "#F5F5F5",
+            },
         },
     },
     plugins: [],

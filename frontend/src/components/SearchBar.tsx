@@ -41,17 +41,17 @@ const SearchBar = () => {
             onSubmit={handleSearch}
             className="w-[97%] sm:w-[70%] md:w-[55%] flex space-x-3 p-2 justify-center items-center bg-white rounded-xl"
         >
-            <FaMagnifyingGlass className="h-6 w-6 text-rose-600 hidden xs:block" />
+            <FaMagnifyingGlass className="h-6 w-6 text-mainClr hidden xs:block" />
             <input
                 type="text"
                 placeholder="Search for classes, teachers, or studios"
                 onChange={(e) => setSearchText(e.target.value)}
-                className="flex-1 bg-transparent border-none outline-none font-semibold text-rose-600"
+                className="w-full bg-transparent border-none outline-none font-semibold text-mainClr"
             />
             <input
                 type="submit"
                 value="Search"
-                className="py-1 px-3 xs:py-2 xs:px-4 bg-rose-600 text-sm xs:text-base text-white font-medium rounded-lg border-2 border-rose-600 hover:bg-transparent hover:text-black cursor-pointer"
+                className="px-3 py-2 xs:px-4 bg-mainClr text-base text-white font-medium rounded-lg border-2 border-mainClr hover:bg-transparent hover:text-black cursor-pointer"
             />
         </form>
     );
