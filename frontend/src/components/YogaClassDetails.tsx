@@ -1,51 +1,67 @@
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../assets/context/MyContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { FaStar, FaStarHalf } from "react-icons/fa6";
+import Loading from "./Loading";
 
 const YogaClassDetails = () => {
+    const [currentYogaClass, setCurrentYogaClass] = useState<YogaClass>();
     const [filled, setFilled] = useState<number>(0);
     const [half, setHalf] = useState<number>(0);
     const [days, setDays] = useState<number>(7);
     const context = useContext(Context);
     const navigate = useNavigate();
+    const { id } = useParams();
 
     if (!context) {
         throw new Error("MyContext provider error");
     }
 
-    const { currentYogaClass } = context;
-
-    if (!currentYogaClass) {
-        navigate("/page-not-found");
-    }
+    const { yogaClasses } = context;
 
     useEffect(() => {
-        if (!currentYogaClass) {
-            navigate("/page-not-found");
-            return;
+        if (yogaClasses) {
+            const yogaClass = yogaClasses.find(
+                (yogaClass) => yogaClass._id === id
+            );
+
+            if (!yogaClass) {
+                navigate("/page-not-found");
+            } else {
+                setCurrentYogaClass(yogaClass);
+            }
         }
+    }, [yogaClasses]);
 
-        setFilled(Math.floor(currentYogaClass.rating));
-        setHalf(currentYogaClass?.rating % 1 !== 0 ? 1 : 0);
-        setDays(currentYogaClass.frequency.length);
-    });
-
-    // useEffect(() => {
-    //     const cookies: { [key: string]: string } = document.cookie
-    //         .split(";")
-    //         .reduce((cookies, item) => {
-    //             const [name, value] = item.split("=");
-    //             cookies[name.trim()] = value;
-    //             return cookies;
-    //         }, {} as { [key: string]: string });
-    // }, []);
+    useEffect(() => {
+        if (currentYogaClass) {
+            setFilled(Math.floor(currentYogaClass.rating));
+            setHalf(currentYogaClass?.rating % 1 !== 0 ? 1 : 0);
+            setDays(currentYogaClass.frequency.length);
+        }
+    }, [currentYogaClass]);
 
     const handleBooking = () => {
-        setTimeout(() => {
-            alert("Yoga Class Booked Successfully:)");
-        }, 1000);
+        const cookies: { [key: string]: string } = document.cookie
+            .split(";")
+            .reduce((cookies, item) => {
+                const [name, value] = item.split("=");
+                cookies[name.trim()] = value;
+                return cookies;
+            }, {} as { [key: string]: string });
+
+        if (cookies["role"] === "USER") {
+            setTimeout(() => {
+                alert("Yoga Class Booked Successfully:)");
+            }, 1000);
+        } else {
+            navigate("/login");
+        }
     };
+
+    if (!currentYogaClass) {
+        return <Loading />;
+    }
 
     return (
         <div className="max-w-6xl mx-auto my-10 px-2 sm:px-3">

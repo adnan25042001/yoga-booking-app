@@ -62,9 +62,7 @@ const YogaCard = ({ yoga }: Props) => {
                         ))}
                     </div>
                     <Link
-                        to={`/yoga-class/${yoga.name
-                            .replace(/\s+/g, "-")
-                            .toLowerCase()}`}
+                        to={`/yoga-class/${yoga._id}`}
                         onClick={() => setCurrentYogaClass(yoga)}
                         className="py-2 px-8 bg-mainClr text-sm xs:text-base text-white font-medium rounded-lg border-2 border-mainClr hover:bg-transparent hover:text-black cursor-pointer"
                     >

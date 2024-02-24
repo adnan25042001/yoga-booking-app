@@ -47,7 +47,7 @@ const App = () => {
                         }
                     />
                     <Route
-                        path="/yoga-class/:name"
+                        path="/yoga-class/:id"
                         element={
                             <>
                                 <Navbar />

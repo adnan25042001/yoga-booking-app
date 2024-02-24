@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Context } from "../assets/context/MyContext";
 import YogaCard from "./YogaCard";
+import Loading from "./Loading";
 
 type Props = {
     yogaClasses: YogaClass[] | null;
@@ -18,9 +19,7 @@ const YogaClassList = ({ yogaClasses, size }: Props) => {
 
     if (!yogaClasses || isloading) {
         return (
-            <div className="text-xl font-semibold mt-10 text-center animate-pulse">
-                Loading...
-            </div>
+            <Loading />
         );
     }
 
