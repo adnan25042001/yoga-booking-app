@@ -146,11 +146,8 @@ const AdminAddYogaClass = () => {
         });
 
         setStartTime("");
-
         setEndTime("");
-
         setSelectedDays({ ...initialSelectedDays });
-
         setFormState({ ...initialFormState });
     };
 
