@@ -7,10 +7,10 @@ import Explore from "./components/Explore";
 import PageNotFound from "./components/PageNotFound";
 import YogaClassDetails from "./components/YogaClassDetails";
 import { useEffect } from "react";
-import AdminLogin from "./components/admin/AdminLogin";
-import AdminNavbar from "./components/admin/AdminNavbar";
-import AdminDashBoard from "./components/admin/AdminDashBoard";
-import AdminAddYogaClass from "./components/admin/AdminAddYogaClass";
+import AdminLogin from "./components/admin copy/AdminLogin";
+import AdminNavbar from "./components/admin copy/AdminNavbar";
+import AdminDashBoard from "./components/admin copy/AdminDashBoard";
+import AdminAddYogaClass from "./components/admin copy/AdminAddYogaClass";
 
 const ScrollToTop = () => {
     const { pathname } = useLocation();
