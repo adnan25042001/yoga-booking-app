@@ -78,15 +78,27 @@ const YogaClassDetails = () => {
                         {currentYogaClass?.name}
                     </h1>
                     <p className="mb-1 font-semibold">
-                        <span className="text-gray-400">LEVEL :</span>{" "}
+                        <span className="text-gray-500">INSTRUCTOR :</span>{" "}
+                        {currentYogaClass?.instructor}
+                    </p>
+                    {currentYogaClass.organization && (
+                        <p className="mb-1 font-semibold">
+                            <span className="text-gray-500">
+                                ORGANIZATION :
+                            </span>{" "}
+                            {currentYogaClass?.organization}
+                        </p>
+                    )}
+                    <p className="mb-1 font-semibold">
+                        <span className="text-gray-500">LEVEL :</span>{" "}
                         {currentYogaClass?.level}
                     </p>
                     <p className="mb-1 font-semibold">
-                        <span className="text-gray-400">STYLE :</span>{" "}
+                        <span className="text-gray-500">STYLE :</span>{" "}
                         {currentYogaClass?.style}
                     </p>
                     <p className="mb-1 font-semibold">
-                        <span className="text-gray-400">DATE :</span>{" "}
+                        <span className="text-gray-500">DATE :</span>{" "}
                         {days == 7
                             ? "Everyday"
                             : days == 1
@@ -95,20 +107,20 @@ const YogaClassDetails = () => {
                         ({currentYogaClass?.frequency.join(", ")})
                     </p>
                     <p className="mb-1 font-semibold">
-                        <span className="text-gray-400">TIME :</span>{" "}
+                        <span className="text-gray-500">TIME :</span>{" "}
                         {currentYogaClass?.startTime} -{" "}
                         {currentYogaClass?.endTime}
                     </p>
                     <p className="mb-1 font-semibold">
-                        <span className="text-gray-400">DURATION :</span>{" "}
+                        <span className="text-gray-500">DURATION :</span>{" "}
                         {currentYogaClass?.duration}
                     </p>
                     <p className="mb-1 font-semibold">
-                        <span className="text-gray-400">FEE :</span> Rs{" "}
+                        <span className="text-gray-500">FEE :</span> Rs{" "}
                         {currentYogaClass?.price} per month
                     </p>
                     <div className="mb-1 font-semibold flex">
-                        <span className="text-gray-400">RATING :</span>{" "}
+                        <span className="text-gray-500">RATING :</span>{" "}
                         <div className="flex space-x-1 justify-center items-center">
                             {Array.from({ length: filled }).map((_, index) => (
                                 <FaStar key={index} className="text-mainClr" />
