@@ -44,6 +44,7 @@ const SearchBar = () => {
             <FaMagnifyingGlass className="h-6 w-6 text-mainClr hidden xs:block" />
             <input
                 type="text"
+                id="searcText"
                 placeholder="Search for classes, teachers, or studios"
                 onChange={(e) => setSearchText(e.target.value)}
                 className="w-full bg-transparent border-none outline-none font-semibold text-mainClr"

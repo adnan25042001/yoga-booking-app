@@ -4,12 +4,12 @@ import Navbar from "./components/Navbar";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Explore from "./components/Explore";
-import AdminLogin from "./components/Admin/AdminLogin";
+import AdminLogin from "./components/admin/AdminLogin";
 import PageNotFound from "./components/PageNotFound";
-import AdminAddYogaClass from "./components/Admin/AdminAddYogaClass";
+import AdminAddYogaClass from "./components/admin/AdminAddYogaClass";
 import YogaClassDetails from "./components/YogaClassDetails";
-import AdminDashBoard from "./components/Admin/AdminDashBoard";
-import AdminNavbar from "./components/Admin/AdminNavbar";
+import AdminDashBoard from "./components/admin/AdminDashBoard";
+import AdminNavbar from "./components/admin/AdminNavbar";
 import { useEffect } from "react";
 
 const ScrollToTop = () => {

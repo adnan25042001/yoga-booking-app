@@ -226,7 +226,7 @@ const AdminAddYogaClass = () => {
                             />
                         </label>
                         <label
-                            htmlFor="end_time"
+                            htmlFor="endTime"
                             className="text-gray-800 font-semibold flex flex-col"
                         >
                             End time

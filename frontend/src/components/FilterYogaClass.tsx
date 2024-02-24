@@ -127,52 +127,48 @@ const FilterYogaClass = () => {
                     } overflow-y-auto transition-all z-20 h-80 min-w-56 pb-5 bg-white absolute top-[100%] right-2 sm:right-6 md:right-8`}
                 >
                     {filterItem.map((item) => (
-                        <>
-                            <div key={item.name}>
-                                <div
-                                    onClick={() => {
-                                        heading === item.name
-                                            ? setHeading("")
-                                            : setHeading(item.name);
-                                    }}
-                                    className="cursor-pointer group px-4 py-3 text-mainClr hover:text-white hover:bg-mainClr transition-all"
-                                >
-                                    <h2 className="flex items-center justify-between">
-                                        <span className="text-lg font-semibold ">
-                                            {item.name}
-                                        </span>
-                                        <FaChevronDown
-                                            className={`${
-                                                heading === item.name
-                                                    ? "rotate-180"
-                                                    : "rotate-0"
-                                            } text-lg transition-all`}
-                                        />
-                                    </h2>
-                                </div>
-                                <div
-                                    className={`${
-                                        heading === item.name
-                                            ? "block"
-                                            : "hidden"
-                                    } flex flex-col pb-3 my-1`}
-                                >
-                                    {item.values.map((value) => (
-                                        <div
-                                            key={value}
-                                            onClick={() =>
-                                                handleFilter(item.key, value)
-                                            }
-                                            className="px-6 py-[1px] hover:bg-orange-500 text-gray-500 hover:text-white transition-all"
-                                        >
-                                            <p className="font-semibold cursor-pointer">
-                                                {value}
-                                            </p>
-                                        </div>
-                                    ))}
-                                </div>
+                        <div key={item.name}>
+                            <div
+                                onClick={() => {
+                                    heading === item.name
+                                        ? setHeading("")
+                                        : setHeading(item.name);
+                                }}
+                                className="cursor-pointer group px-4 py-3 text-mainClr hover:text-white hover:bg-mainClr transition-all"
+                            >
+                                <h2 className="flex items-center justify-between">
+                                    <span className="text-lg font-semibold ">
+                                        {item.name}
+                                    </span>
+                                    <FaChevronDown
+                                        className={`${
+                                            heading === item.name
+                                                ? "rotate-180"
+                                                : "rotate-0"
+                                        } text-lg transition-all`}
+                                    />
+                                </h2>
                             </div>
-                        </>
+                            <div
+                                className={`${
+                                    heading === item.name ? "block" : "hidden"
+                                } flex flex-col pb-3 my-1`}
+                            >
+                                {item.values.map((value) => (
+                                    <div
+                                        key={value}
+                                        onClick={() =>
+                                            handleFilter(item.key, value)
+                                        }
+                                        className="px-6 py-[1px] hover:bg-orange-500 text-gray-500 hover:text-white transition-all"
+                                    >
+                                        <p className="font-semibold cursor-pointer">
+                                            {value}
+                                        </p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     ))}
                 </ul>
             </div>

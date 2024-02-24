@@ -31,7 +31,11 @@ const Explore = () => {
         <div className="max-w-6xl mx-auto my-10 px-3 sm:px-3">
             <HeroBanner />
             <FilterYogaClass />
-            <YogaClassList yogaClasses={searchResults} size={null} />
+            <YogaClassList
+                yogaClasses={searchResults}
+                size={null}
+                btnType="join"
+            />
         </div>
     );
 };

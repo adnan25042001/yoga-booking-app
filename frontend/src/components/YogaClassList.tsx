@@ -6,9 +6,10 @@ import Loading from "./Loading";
 type Props = {
     yogaClasses: YogaClass[] | null;
     size: number | null;
+    btnType: string;
 };
 
-const YogaClassList = ({ yogaClasses, size }: Props) => {
+const YogaClassList = ({ yogaClasses, size, btnType }: Props) => {
     const context = useContext(Context);
 
     if (!context) {
@@ -18,9 +19,7 @@ const YogaClassList = ({ yogaClasses, size }: Props) => {
     const { isloading } = context;
 
     if (!yogaClasses || isloading) {
-        return (
-            <Loading />
-        );
+        return <Loading />;
     }
 
     return (
@@ -29,7 +28,13 @@ const YogaClassList = ({ yogaClasses, size }: Props) => {
                 yogaClasses.map((yoga, i) => {
                     if (size && i >= size) return;
 
-                    return <YogaCard key={yoga._id} yoga={yoga} />;
+                    return (
+                        <YogaCard
+                            key={yoga._id}
+                            yoga={yoga}
+                            btnType={btnType}
+                        />
+                    );
                 })}
         </div>
     );

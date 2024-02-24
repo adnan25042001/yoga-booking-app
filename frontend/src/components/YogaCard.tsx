@@ -1,13 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import { FaRegCalendar, FaRegClock, FaStar, FaStarHalf } from "react-icons/fa6";
-import { Link } from "react-router-dom";
 import { Context } from "../assets/context/MyContext";
+import JoinBtn from "./button/JoinBtn";
+import DeleteBtn from "./button/DeleteBtn";
 
 type Props = {
     yoga: YogaClass;
+    btnType: string;
 };
 
-const YogaCard = ({ yoga }: Props) => {
+const YogaCard = ({ yoga, btnType }: Props) => {
     const [filled, setFilled] = useState<number>(0);
     const [half, setHalf] = useState<number>(0);
     const [days, setDays] = useState<number>(7);
@@ -17,8 +19,6 @@ const YogaCard = ({ yoga }: Props) => {
     if (!context) {
         throw new Error("MyContext provider error");
     }
-
-    const { setCurrentYogaClass } = context;
 
     useEffect(() => {
         const filledStars = Math.floor(yoga.rating);
@@ -61,13 +61,8 @@ const YogaCard = ({ yoga }: Props) => {
                             <FaStarHalf key={index} className="text-mainClr" />
                         ))}
                     </div>
-                    <Link
-                        to={`/yoga-class/${yoga._id}`}
-                        onClick={() => setCurrentYogaClass(yoga)}
-                        className="py-2 px-8 bg-mainClr text-sm xs:text-base text-white font-medium rounded-lg border-2 border-mainClr hover:bg-transparent hover:text-black cursor-pointer"
-                    >
-                        Join
-                    </Link>
+                    {btnType === "join" && <JoinBtn id={yoga._id} />}
+                    {btnType === "delete" && <DeleteBtn id={yoga._id} />}
                 </div>
                 <div className="flex flex-col justify-between space-y-4">
                     <div className="flex justify-start items-center space-x-2">
